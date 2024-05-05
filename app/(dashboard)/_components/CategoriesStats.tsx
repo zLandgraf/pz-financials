@@ -37,14 +37,14 @@ function CategoriesStats({ userSettings, from, to }: Props) {
       <SkeletonWrapper isLoading={statsQuery.isFetching}>
         <CategoriesCard
           formatter={formatter}
-          type="Receitas"
+          type="income"
           data={statsQuery.data || []}
         />
       </SkeletonWrapper>
       <SkeletonWrapper isLoading={statsQuery.isFetching}>
         <CategoriesCard
           formatter={formatter}
-          type="Despesas"
+          type="expense"
           data={statsQuery.data || []}
         />
       </SkeletonWrapper>
@@ -73,7 +73,7 @@ function CategoriesCard({
     <Card className="h-80 w-full col-span-6">
       <CardHeader>
         <CardTitle className="grid grid-flow-row justify-between gap-2 text-muted-foreground md:grid-flow-col">
-          {type === "Receitas" ? "Receitas" : "Despesas"} por categoria
+          {type === "income" ? "Receitas" : "Despesas"} por categoria
         </CardTitle>
       </CardHeader>
       <div className="flex items-center justify-between gap-2">
@@ -82,7 +82,7 @@ function CategoriesCard({
             Nenhum dado encontrato
             <p className="text-sm text-muted-foreground">
               Tente selecionar outra data.
-              {type === "Receitas" ? "Receitas" : "Despesas"}
+              {type === "income" ? "Receitas" : "Despesas"}
             </p>
           </div>
         )}
@@ -109,7 +109,7 @@ function CategoriesCard({
                     <Progress
                       value={percentage}
                       indicator={
-                        type === "Receitas" ? "bg-emerald-500" : "bg-red-500"
+                        type === "income" ? "bg-emerald-500" : "bg-red-500"
                       }
                     />
                   </div>
