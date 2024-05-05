@@ -27,7 +27,7 @@ function DeleteTransactionDialog({ open, setOpen, transactionId }: Props) {
   const deleteMutation = useMutation({
     mutationFn: DeleteTransaction,
     onSuccess: async () => {
-      toast.success("Transaction deleted successfully", {
+      toast.success("Transação deletada com sucesso!", {
         id: transactionId,
       });
 
@@ -36,7 +36,7 @@ function DeleteTransactionDialog({ open, setOpen, transactionId }: Props) {
       });
     },
     onError: () => {
-      toast.error("Something went wrong", {
+      toast.error("Algo deu errado", {
         id: transactionId,
       });
     },

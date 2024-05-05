@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { TransactionType } from "@/lib/types";
-import { cn } from "@/lib/utils";
 import { Category } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { PlusSquare, TrashIcon, TrendingDown, TrendingUp } from "lucide-react";
@@ -23,7 +22,6 @@ import React from "react";
 function page() {
   return (
     <>
-      {/* HEADER */}
       <div className="border-b bg-card">
         <div className="container flex flex-wrap items-center justify-between gap-6 py-8">
           <div>
