@@ -33,17 +33,6 @@ function page() {
         </div>
       </div>
       <div className="container flex flex-col gap-4 p-4">
-        <Card>
-          <CardHeader>
-            <CardTitle>Moedas</CardTitle>
-            <CardDescription>
-              Escolha a moeda padrão para suas transações
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <CurrencyComboBox />
-          </CardContent>
-        </Card>
         <CategoryList type="income" />
         <CategoryList type="expense" />
       </div>
