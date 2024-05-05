@@ -70,7 +70,7 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
         type,
       });
 
-      toast.success(`Category ${data.name} created successfully 🎉`, {
+      toast.success(`Categoria cadastrada com sucesso! 🎉`, {
         id: "create-category",
       });
 
@@ -83,7 +83,7 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
       setOpen((prev) => !prev);
     },
     onError: () => {
-      toast.error("Something went wrong", {
+      toast.error("Algo deu errado", {
         id: "create-category",
       });
     },
