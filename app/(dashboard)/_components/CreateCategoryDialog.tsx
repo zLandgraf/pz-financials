@@ -110,26 +110,25 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
             className="flex border-separate items-center justify-start roudned-none border-b px-3 py-3 text-muted-foreground"
           >
             <PlusSquare className="mr-2 h-4 w-4" />
-            Create new
+            Cadastrar nova
           </Button>
         )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            Create
+            Criar nova categoria de 
             <span
               className={cn(
                 "m-1",
                 type === "income" ? "text-emerald-500" : "text-red-500"
               )}
             >
-              {type}
+              {type === "income" ? "receita" : "despesa"}
             </span>
-            category
           </DialogTitle>
           <DialogDescription>
-            Categories are used to group your transactions
+            Categorias são usadas para agrupar transações
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -139,23 +138,19 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Nome</FormLabel>
                   <FormControl>
-                    <Input placeholder="Category" {...field} />
+                    <Input placeholder="Categoria" {...field} />
                   </FormControl>
-                  <FormDescription>
-                    This is how your category will appear in the app
-                  </FormDescription>
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="icon"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Icon</FormLabel>
+                  <FormLabel>Ícone</FormLabel>
                   <FormControl>
                     <Popover>
                       <PopoverTrigger asChild>
@@ -169,14 +164,14 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
                                 {field.value}
                               </span>
                               <p className="text-xs text-muted-foreground">
-                                Click to change
+                                Clique para alterar
                               </p>
                             </div>
                           ) : (
                             <div className="flex flex-col items-center gap-2">
                               <CircleOff className="h-[48px] w-[48px]" />
                               <p className="text-xs text-muted-foreground">
-                                Click to select
+                                Clique para selecionar
                               </p>
                             </div>
                           )}
@@ -193,9 +188,6 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
                       </PopoverContent>
                     </Popover>
                   </FormControl>
-                  <FormDescription>
-                    This is how your category will appear in the app
-                  </FormDescription>
                 </FormItem>
               )}
             />
@@ -210,11 +202,11 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
                 form.reset();
               }}
             >
-              Cancel
+              Cancelar
             </Button>
           </DialogClose>
           <Button onClick={form.handleSubmit(onSubmit)} disabled={isPending}>
-            {!isPending && "Create"}
+            {!isPending && "Cadastrar"}
             {isPending && <Loader2 className="animate-spin" />}
           </Button>
         </DialogFooter>

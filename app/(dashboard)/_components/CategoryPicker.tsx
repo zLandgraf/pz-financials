@@ -66,7 +66,7 @@ function CategoryPicker({ type, onChange }: Props) {
           {selectedCategory ? (
             <CategoryRow category={selectedCategory} />
           ) : (
-            "Select category"
+            "Selecione categoria"
           )}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -80,9 +80,9 @@ function CategoryPicker({ type, onChange }: Props) {
           <CommandInput placeholder="Search category..." />
           <CreateCategoryDialog type={type} successCallback={successCallback} />
           <CommandEmpty>
-            <p>Category not found</p>
+            <p>Nenhuma categoria encontrada</p>
             <p className="text-xs text-muted-foreground">
-              Tip: Create a new category
+              Dica: Cadastre uma categoria
             </p>
           </CommandEmpty>
           <CommandGroup>

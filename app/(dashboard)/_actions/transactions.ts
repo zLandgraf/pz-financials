@@ -6,6 +6,7 @@ import {
   CreateTransactionSchemaType,
 } from "@/schema/transaction";
 import { currentUser } from "@clerk/nextjs";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function CreateTransaction(form: CreateTransactionSchemaType) {
@@ -30,8 +31,6 @@ export async function CreateTransaction(form: CreateTransactionSchemaType) {
   if (!categoryRow) {
     throw new Error("category not found");
   }
-
-  // NOTE: don't make confusion between $transaction ( prisma ) and prisma.transaction (table)
 
   await prisma.$transaction([
     // Create user transaction
