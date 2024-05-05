@@ -32,7 +32,7 @@ function DeleteTransactionDialog({ open, setOpen, transactionId }: Props) {
       });
 
       await queryClient.invalidateQueries({
-        queryKey: ["transactions"],
+        queryKey: ["transactions-table"],
       });
     },
     onError: () => {
@@ -45,23 +45,22 @@ function DeleteTransactionDialog({ open, setOpen, transactionId }: Props) {
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>Você tem certeza?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            transaction
+            Essa ação não poderá ser desfeita.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
-              toast.loading("Deleting transaction...", {
+              toast.loading("Deletando transação...", {
                 id: transactionId,
               });
               deleteMutation.mutate(transactionId);
             }}
           >
-            Continue
+            Deletar
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

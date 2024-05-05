@@ -53,14 +53,11 @@ async function getTransactionsHistory(userId: string, from: Date, to: Date) {
   const transactions = await prisma.transaction.findMany({
     where: {
       userId,
-      date: {
-        gte: from,
-        lte: to,
-      },
     },
     orderBy: {
       date: "desc",
     },
+    take: 100
   });
 
   return transactions.map((transaction) => ({

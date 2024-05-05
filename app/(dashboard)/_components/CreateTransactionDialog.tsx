@@ -62,6 +62,8 @@ function CreateTransactionDialog({ trigger, from, to, type }: Props) {
   });
   
   const [open, setOpen] = useState(false);
+
+  const queryClient = useQueryClient();
   
   const handleCategoryChange = useCallback(
     (value: string) => {
@@ -72,7 +74,7 @@ function CreateTransactionDialog({ trigger, from, to, type }: Props) {
 
   const { mutate, isPending } = useMutation({
     mutationFn: CreateTransaction,
-    onSuccess: () => {
+    onSuccess: async () => {
       toast.success("Transação cadastrada com sucesso! 🎉", {
         id: "create-transaction",
       });
@@ -83,6 +85,10 @@ function CreateTransactionDialog({ trigger, from, to, type }: Props) {
         amount: 0,
         date: new Date(),
         category: undefined,
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["transactions-table"],
       });
 
       setOpen((prev) => !prev);
