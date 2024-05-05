@@ -1,6 +1,5 @@
 "use client";
 
-import CategoriesStats from "@/app/(dashboard)/_components/CategoriesStats";
 import StatsCards from "@/app/(dashboard)/_components/StatsCards";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { MAX_DATE_RANGE_DAYS } from "@/lib/constants";
@@ -8,6 +7,8 @@ import { UserSettings } from "@prisma/client";
 import { differenceInDays, startOfMonth } from "date-fns";
 import React, { useState } from "react";
 import { toast } from "sonner";
+import CreateTransactionDialog from "./CreateTransactionDialog";
+import { Button } from "@/components/ui/button";
 
 function Overview({ userSettings }: { userSettings: UserSettings }) {
   const [dateRange, setDateRange] = useState<{ from: Date; to: Date }>({

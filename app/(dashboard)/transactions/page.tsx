@@ -1,10 +1,10 @@
 "use client";
 
+import React, { useState } from "react";
 import TransactionTable from "@/app/(dashboard)/transactions/_components/TransactionTable";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { MAX_DATE_RANGE_DAYS } from "@/lib/constants";
 import { differenceInDays, startOfMonth } from "date-fns";
-import React, { useState } from "react";
 import { toast } from "sonner";
 import CreateTransactionDialog from "../_components/CreateTransactionDialog";
 import { Button } from "@/components/ui/button";
@@ -42,6 +42,8 @@ function TransactionsPage() {
               }}
             />
             <CreateTransactionDialog
+              to={dateRange.to}
+              from={dateRange.from}
               trigger={
                 <Button
                   variant={"outline"}
@@ -53,6 +55,8 @@ function TransactionsPage() {
               type="expense"
             />
             <CreateTransactionDialog
+              to={dateRange.to}
+              from={dateRange.from}
               trigger={
                 <Button
                   variant={"outline"}

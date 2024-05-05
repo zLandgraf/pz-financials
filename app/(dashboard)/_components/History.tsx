@@ -164,9 +164,9 @@ function History({ userSettings }: { userSettings: UserSettings }) {
             )}
             {!dataAvailable && (
               <Card className="flex h-[300px] flex-col items-center justify-center bg-background">
-                No data for the selected period
+                Nenhuma transação encontrada para este período.
                 <p className="text-sm text-muted-foreground">
-                  Try selecting a different period or adding new transactions
+                  Tente adicionar novas transações ou escolher um novo período.
                 </p>
               </Card>
             )}

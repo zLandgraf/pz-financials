@@ -34,13 +34,12 @@ function page() {
           </div>
         </div>
       </div>
-      {/* END HEDER */}
       <div className="container flex flex-col gap-4 p-4">
         <Card>
           <CardHeader>
-            <CardTitle>Currency</CardTitle>
+            <CardTitle>Moedas</CardTitle>
             <CardDescription>
-              Set your default currency for transactions
+              Escolha a moeda padrão para suas transações
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -77,20 +76,19 @@ function CategoryList({ type }: { type: TransactionType }) {
                 <TrendingUp className="h-12 w-12 items-center rounded-lg bg-emerald-400/10 p-2 text-emerald-500" />
               )}
               <div>
-                {type === "income" ? "Incomes" : "Expenses"} categories
+                {type === "income" ? "Receitas" : "Despesas"} Categorias
                 <div className="text-sm text-muted-foreground">
-                  Sorted by name
+                  Ordenadas por nome
                 </div>
               </div>
             </div>
-
             <CreateCategoryDialog
               type={type}
               successCallback={() => categoriesQuery.refetch()}
               trigger={
                 <Button className="gap-2 text-sm">
                   <PlusSquare className="h-4 w-4" />
-                  Create category
+                  Cadastrar categoria
                 </Button>
               }
             />
@@ -100,20 +98,10 @@ function CategoryList({ type }: { type: TransactionType }) {
         {!dataAvailable && (
           <div className="flex h-40 w-full flex-col items-center justify-center">
             <p>
-              No
-              <span
-                className={cn(
-                  "m-1",
-                  type === "income" ? "text-emerald-500" : "text-red-500"
-                )}
-              >
-                {type}
-              </span>
-              categories yet
+              Nenhuma categoria cadastrada ainda.
             </p>
-
             <p className="text-sm text-muted-foreground">
-              Create one to get started
+              Cadastre uma para começar!
             </p>
           </div>
         )}
@@ -146,7 +134,7 @@ function CategoryCard({ category }: { category: Category }) {
             variant={"secondary"}
           >
             <TrashIcon className="h-4 w-4" />
-            Remove
+            Remover
           </Button>
         }
       />

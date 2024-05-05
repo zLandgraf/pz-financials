@@ -6,7 +6,6 @@ import {
   CreateTransactionSchemaType,
 } from "@/schema/transaction";
 import { currentUser } from "@clerk/nextjs";
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function CreateTransaction(form: CreateTransactionSchemaType) {
@@ -21,6 +20,7 @@ export async function CreateTransaction(form: CreateTransactionSchemaType) {
   }
 
   const { amount, category, date, description, type } = parsedBody.data;
+  
   const categoryRow = await prisma.category.findFirst({
     where: {
       userId: user.id,
@@ -100,4 +100,6 @@ export async function CreateTransaction(form: CreateTransactionSchemaType) {
       },
     }),
   ]);
+
+  redirect("/transactions");
 }

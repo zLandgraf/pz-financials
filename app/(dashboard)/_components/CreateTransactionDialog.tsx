@@ -23,7 +23,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -48,9 +47,12 @@ import { DateToUTCDate } from "@/lib/helpers";
 interface Props {
   trigger: ReactNode;
   type: TransactionType;
+  from: Date;
+  to: Date
 }
 
-function CreateTransactionDialog({ trigger, type }: Props) {
+function CreateTransactionDialog({ trigger, from, to, type }: Props) {
+  
   const form = useForm<CreateTransactionSchemaType>({
     resolver: zodResolver(CreateTransactionSchema),
     defaultValues: {
@@ -58,7 +60,9 @@ function CreateTransactionDialog({ trigger, type }: Props) {
       date: new Date(),
     },
   });
+  
   const [open, setOpen] = useState(false);
+  
   const handleCategoryChange = useCallback(
     (value: string) => {
       form.setValue("category", value);
@@ -66,12 +70,10 @@ function CreateTransactionDialog({ trigger, type }: Props) {
     [form]
   );
 
-  const queryClient = useQueryClient();
-
   const { mutate, isPending } = useMutation({
     mutationFn: CreateTransaction,
     onSuccess: () => {
-      toast.success("Transaction created successfully 🎉", {
+      toast.success("Transação cadastrada com sucesso! 🎉", {
         id: "create-transaction",
       });
 
@@ -83,10 +85,6 @@ function CreateTransactionDialog({ trigger, type }: Props) {
         category: undefined,
       });
 
-      queryClient.invalidateQueries({
-        queryKey: ["overview"],
-      });
-
       setOpen((prev) => !prev);
     },
   });
@@ -94,7 +92,6 @@ function CreateTransactionDialog({ trigger, type }: Props) {
   const onSubmit = useCallback(
     (values: CreateTransactionSchemaType) => {
       toast.loading("Criando transação...", { id: "create-transaction" });
-
       mutate({
         ...values,
         date: DateToUTCDate(values.date),
@@ -146,7 +143,6 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                 </FormItem>
               )}
             />
-
             <div className="flex items-center justify-between gap-2">
               <FormField
                 control={form.control}
@@ -163,7 +159,6 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="date"
